@@ -1,10 +1,5 @@
 clear all
 
-global DAT "~/database/NHIS/Data/raw/1999"
-global OUT "~/database/NHIS/Data/dta/1999"
-global LOG "~/database/NHIS/Log"
-global COD "~/database/NHIS/Source/1999"
-
 log using "$LOG/househld.log", replace
 set mem 1000m
 
@@ -29,7 +24,7 @@ local dta_name "~/database/NHIS/Data/dta/1999/househld"
 
 /* The following line should contain the path to the data dictionary file */
 
-local dct_name "$COD/nhis1999_househld.dct"
+local dct_name "$COD/1999/nhis1999_househld.dct"
 
 infile using "`dct_name'", using("`dat_name'") clear
 
