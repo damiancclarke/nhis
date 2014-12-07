@@ -1,10 +1,5 @@
 clear all
 
-global DAT "~/database/NHIS/Data/raw/1998"
-global OUT "~/database/NHIS/Data/dta/1998"
-global LOG "~/database/NHIS/Log"
-global COD "~/database/NHIS/Source/1998"
-
 log using "$LOG/personsx.log", replace
 set mem 1000m
 
@@ -21,15 +16,15 @@ set mem 1000m
    the complete path and name of the raw data file.
    On a PC, use backslashes in paths as in C:\  */
 
-local dat_name "~/database/NHIS/Data/raw/1998/personsx.dat"
+local dat_name "$DAT/1998/personsx.dat"
 
 /* The following line should contain the path to your output '.dta' file */
 
-local dta_name "~/database/NHIS/Data/dta/1998/personsx"
+local dta_name "$OUT/1998/personsx"
 
 /* The following line should contain the path to the data dictionary file */
 
-local dct_name "$COD/nhis1998_personsx.dct"
+local dct_name "$COD/1998/nhis1998_personsx.dct"
 
 infile using "`dct_name'", using("`dat_name'") clear
 
