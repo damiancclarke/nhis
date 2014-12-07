@@ -24,6 +24,7 @@ import os
 import urllib2
 import zipfile
 
+script, DLDIR, OUTDIR = argv
 
 #-------------------------------------------------------------------------------
 #--- (2) URL for NHIS raw data (CDC website)
@@ -31,6 +32,13 @@ import zipfile
 u1 = 'www.cdc.gov/nchs/nhis/nhis_'
 u2 = '_data_release.htm'
 
+print 'The script' + script + 'is taking files from:'
+
 for year in range(1997,2014):
     print u1 + str(year) + u2
 
+print 'saving them in ' + DLDIR + 'and processing them in ' + OUTDIR
+
+#-------------------------------------------------------------------------------
+#--- (3) Unpack, process
+#-------------------------------------------------------------------------------
