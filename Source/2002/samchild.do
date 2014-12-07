@@ -1,7 +1,3 @@
-global DAT "~/database/NHIS/Data/raw/2002"
-global OUT "~/database/NHIS/Data/dta/2002"
-global LOG "~/database/NHIS/Log"
-
 log using "$LOG/samchild.log", replace
 
 version 6.0
@@ -130,7 +126,7 @@ infix
       facct3_b    238 - 238      facct4      239 - 239
       facct4_a    240 - 240      facct4_b    241 - 241
       facct5      242 - 242      facct5_a    243 - 243
-using $DAT/samchild.dat;
+using "$DAT/2002/samchild.dat";
 replace wtia_sc = wtia_sc / 10;
 
 * DEFINE VARIABLE LABELS;
@@ -920,7 +916,7 @@ describe;
 * DISPLAY A TEST TABLE FROM THE FILE;
 
 tabulate educ [fweight=wtfa_sc];
-save $OUT/samchild, replace;
+save "$OUT/2002/samchild.dta", replace;
 
 #delimit cr
 * data file is stored in samchild.dta
