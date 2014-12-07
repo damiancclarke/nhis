@@ -21,8 +21,8 @@ cap log close
 global DAT "~/database/NHIS/Data/raw"
 global OUT "~/database/NHIS/Data/dta"
 global LOG "~/database/NHIS/Log"
-global COD "~/database/NHIS/Source"
-
+global SOURCE "~/database/NHIS/Source"
+global COD1 "~/database/NHIS/Source"
 
 ********************************************************************************
 *** (2) Process all files
@@ -30,7 +30,7 @@ global COD "~/database/NHIS/Source"
 foreach year of numlist 1997(1)2013 {
 	foreach script in familyxx househld personsx samadult samchild {
 		dis "Year `year', script `script'"
-		do "$COD/`year'/`script'.do"
+		do "$SOURCE/`year'/`script'.do"
 	}
 }
 

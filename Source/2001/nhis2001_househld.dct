@@ -1,0 +1,58 @@
+infile dictionary { 
+*This program reads the 2001 National Health Interview Survey 2001 househld  Data File
+*by Jean Roth Mon Jul  2 15:41:40 EDT 2007
+*Please report errors to jroth@nber.org
+*See the .do file for directions and run with do nhis2001_househld 
+*NOTE:  This program is distributed under the GNU GPL.
+*See end of this file and http://www.gnu.org/licenses/ for details.
+_column(1   )   byte rectype       %2f "Record Type"                           
+_column(3   )    int srvy_yr       %4f "Processing Year"                       
+_column(7   )   str6 hhx           %6s "Household Serial Number"               
+_column(13  )   byte intv_qrt      %1f "Interviewing Quarter"                  
+_column(14  )   byte assignwk      %2f "Assignment Week"                       
+_column(16  )   str2 int_m_p       %2s "Date of Interview - Month"             
+_column(18  )   str4 int_y_p       %4s "Date of Interview - Year"              
+_column(22  )   byte livqrt        %2f "Type of Living Quarters"               
+_column(24  )   byte non_intv      %1f "Category of type A non-response"       
+_column(25  )   byte telenum       %1f "Telephone number"                      
+_column(26  )   byte inside        %1f "Working phone inside home"             
+_column(27  )   byte noserv        %1f "Without telephone service past 12 mon" 
+_column(28  )   byte howlngwk      %2f "Number of weeks w/o telephone service" 
+_column(30  )   byte nowaf_hh      %1f "Armed Forces member in HH"             
+_column(31  )   byte acpt_fam      %2f "Number of families responding in HH"   
+_column(33  )   byte rej_fam       %2f "Number of families not responding in " 
+_column(35  )   byte acpt_per      %2f "Number of persons responding in HH"    
+_column(37  )   byte rej_per       %2f "Number of persons not responding in H" 
+_column(39  )   byte acptchld      %2f "Number of children that responded in " 
+_column(41  )   byte lng_intv      %1f "Language of interview"                 
+_column(42  )   byte region        %1f "Region"                                
+_column(43  )   byte msasizep      %1f "Geographic Distribution - MSA size"    
+_column(44  )   long wtia_hh       %6f "Weight - Interim Annual"               
+_column(50  )   long wtfa_hh       %6f "Weight - Final Annual"                 
+_column(56  )    int stratum       %3f "Stratum for variance estimation"       
+_column(59  )   byte psu           %1f "PSU for variance estimation"           
+
+}
+/*
+Copyright 2007 shared by the National Bureau of Economic Research and Jean Roth
+
+National Bureau of Economic Research.
+1050 Massachusetts Avenue
+Cambridge, MA 02138
+jroth@nber.org
+
+This program and all programs referenced in it are free software. You
+can redistribute the program or modify it under the terms of the GNU
+General Public License as published by the Free Software Foundation;
+either version 2 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+USA.
+*/

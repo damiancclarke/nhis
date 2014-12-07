@@ -1,0 +1,134 @@
+infile dictionary { 
+*This program reads the 1997 National Health Interview Survey 1997 familyxx  Data File
+*by Jean Roth Mon Jul  2 15:41:13 EDT 2007
+*Please report errors to jroth@nber.org
+*See the .do file for directions and run with do nhis1997_familyxx 
+*NOTE:  This program is distributed under the GNU GPL.
+*See end of this file and http://www.gnu.org/licenses/ for details.
+_column(1   )   byte rectype       %2f "Record Type"                           
+_column(3   )    int srvy_yr       %4f "Survey Year"                           
+_column(7   )   str6 hhx           %6s "Household Serial Number"               
+_column(13  )   str2 fmx           %2s "Family Serial Number"                  
+_column(15  )   byte intv_qrt      %1f "Interview Quarter"                     
+_column(16  )   byte assignwk      %2f "Assignment week"                       
+_column(18  )   byte livqrt        %2f "Type of living quarters"               
+_column(20  )   byte telenum       %1f "Supplied telephone number"             
+_column(21  )   byte inside        %1f "Working phone inside home"             
+_column(22  )   byte fm_size       %2f "Size of family"                        
+_column(24  )   byte lng_intv      %1f "Language of interview"                 
+_column(25  )   byte region        %1f "Region"                                
+_column(26  )   byte msasizep      %1f "Geographic Distribution - MSA size"    
+_column(27  )   long wtfa_fam      %6f "Weight - Final Annual"                 
+_column(33  )    int stratum       %3f "Stratum for variance estimation"       
+_column(36  )   byte psu           %1f "PSU for variance estimation"           
+_column(37  )   byte fchlmyn       %1f "Any child < 5 in fam w/ play lim?"     
+_column(38  )   byte fchlmct       %2f "# children < 5 in fam w/ play lim"     
+_column(40  )   byte fspedyn       %1f "Any child < 18 in fam rec Spec Ed/EIS" 
+_column(41  )   byte fspedct       %2f "# children < 18 in fam rec Spec Ed/EI" 
+_column(43  )   byte flaadlyn      %1f "Anyone need help w/ADL?"               
+_column(44  )   byte flaadlct      %2f "# fam members needing help w/ADL"      
+_column(46  )   byte fliadlyn      %1f "Anyone need help w/ chores; shop?"     
+_column(47  )   byte fliadlct      %2f "# fam members need help w/chores; sho" 
+_column(49  )   byte fwklimyn      %1f "Anyone with work lim due to hlth prob" 
+_column(50  )   byte fwklimct      %2f "# fam members w/ work lim (hlth)"      
+_column(52  )   byte fwalkyn       %1f "Anyone have dif walking w/o equip?"    
+_column(53  )   byte fwalkct       %2f "# fam members dif walk w/o equip"      
+_column(55  )   byte frememyn      %1f "Anyone limited by dif remembering?"    
+_column(56  )   byte frememct      %2f "# fam members w/ dif remembering"      
+_column(58  )   byte fanylyn       %1f "Anyone limited in any way?"            
+_column(59  )   byte fanylct       %2f "# fam members w/ any limitation"       
+_column(61  )   byte fhstatex      %2f "# fam members in excellent health"     
+_column(63  )   byte fhstatvg      %2f "# fam members in very good health"     
+_column(65  )   byte fhstatg       %2f "# fam members in good health"          
+_column(67  )   byte fhstatfr      %2f "# fam members in fair health"          
+_column(69  )   byte fhstatpr      %2f "# fam members in poor health"          
+_column(71  )   byte finjyn        %1f "Anyone w/ a serious injury (last 3 m)" 
+_column(72  )   byte finjct1       %2f "# fam members w/ injury (last 3 m)"    
+_column(74  )   byte finjct2       %2f "# injury episodes/family (last 3 m)"   
+_column(76  )   byte fpoisyn       %1f "Anyone w/ serious poisoning (last 3 m" 
+_column(77  )   byte fpoisct1      %2f "# fam members poisoned (last 3 m)"     
+_column(79  )   byte fpoisct2      %2f "# poisonings/family (last 3 m)"        
+_column(81  )   byte fdmedyn       %1f "Anyone delay med care (cost); 12m?"    
+_column(82  )   byte fdmedct       %2f "# fam members delay med care (cost)"   
+_column(84  )   byte fnmedyn       %1f "Anyone not get med care (cost); 12m?"  
+_column(85  )   byte fnmedct       %2f "# fam members not get med care (cost)" 
+_column(87  )   byte fhospyn       %1f "Anyone in hosp OVERNIGHT; 12m?"        
+_column(88  )   byte fhospct       %2f "# fam members in hosp OVERNIGHT; 12m"  
+_column(90  )   byte fhchmyn       %1f "Anyone rec home care by hlth prof; 2 " 
+_column(91  )   byte fhchmct       %2f "# fam members rec home care; 2 wk"     
+_column(93  )   byte fhcphyn       %1f "Anyone phone a hlth prof; 2 wk?"       
+_column(94  )   byte fhcphct       %2f "# fam members phone hlth care prof; 2" 
+_column(96  )   byte fhcdvyn       %1f "Anyone see hlth prof in office; 2 wk?" 
+_column(97  )   byte fhcdvct       %2f "# fam members see hlth prof in office" 
+_column(99  )   byte f10dvyn       %1f "Anyone rec care 10+ times; 12m?"       
+_column(100 )   byte f10dvct       %2f "# fam members rec care 10+ times; 12m" 
+_column(102 )   byte fhicovyn      %1f "Anyone have hlth ins coverage?"        
+_column(103 )   byte fhicovct      %2f "# fam members with hlth ins coverage"  
+_column(105 )   byte fhiprvct      %2f "# fam members w/ private hlth ins"     
+_column(107 )   byte fhicarct      %2f "# fam members w/ medicare hlth ins"    
+_column(109 )   byte fhicadct      %2f "# fam members w/ medicaid hlth ins"    
+_column(111 )   byte fhimilct      %2f "# fam members w/ military hlth ins"    
+_column(113 )   byte fhiihsct      %2f "# fam members w/ IHS hlth ins"         
+_column(115 )   byte fhipubct      %2f "# fam members w/ otr state-spon hlth " 
+_column(117 )   byte fhiogvct      %2f "# fam members w/ otr govt hlth ins"    
+_column(119 )   byte fhicost       %1f "Cost of fam med/dental care; past 12m" 
+_column(120 )   byte fhdstct       %2f "# children < 6 in Head Start"          
+_column(122 )   byte fdglwct1      %2f "# fam members working last week"       
+_column(124 )   byte fdglwct2      %2f "# fam members look for work last week" 
+_column(126 )   byte fwrklwct      %2f "# fam members work full time last wee" 
+_column(128 )   byte fsalyn        %1f "Anyone rec inc from wages/sal (last C" 
+_column(129 )   byte fsalct        %2f "# fam members rec inc from wage/sal"   
+_column(131 )   byte fseincyn      %1f "Anyone rec inc from self-emp?"         
+_column(132 )   byte fseincct      %2f "# fam members rec inc from self-emp"   
+_column(134 )   byte fssrryn       %1f "Anyone rec Soc Sec or RR ret (last CY" 
+_column(135 )   byte fssrrct       %2f "# fam members rec Soc Sec or RR ret"   
+_column(137 )   byte fpensyn       %1f "Anyone rec inc from otr pensions?"     
+_column(138 )   byte fpensct       %2f "# fam members rec inc from otr pensio" 
+_column(140 )   byte fssiyn        %1f "Anyone rec inc from SSI?"              
+_column(141 )   byte fssict        %2f "# fam members rec inc from SSI"        
+_column(143 )   byte fssdiyn       %1f "Anyone rec inc from SSDI?"             
+_column(144 )   byte fssdict       %2f "# fam members rec inc from SSDI"       
+_column(146 )   byte fafdcyn       %1f "Anyone rec Wel/AFDC/Gen Assist?"       
+_column(147 )   byte fafdcct       %2f "# fam members rec Wel/AFDC/Gen Assist" 
+_column(149 )   byte fintrsyn      %1f "Anyone rec int from sav/bank accts?"   
+_column(150 )   byte fintrsct      %2f "# fam members rec int from sav/bank a" 
+_column(152 )   byte fdivdyn       %1f "Anyone rec div from stocks; funds?"    
+_column(153 )   byte fdivdct       %2f "# fam members rec div from stocks; fu" 
+_column(155 )   byte fchspyn       %1f "Anyone rec inc from child support?"    
+_column(156 )   byte fchspct       %2f "# fam members rec inc from child supp" 
+_column(158 )   byte fincotyn      %1f "Anyone rec inc from any otr source?"   
+_column(159 )   byte fincotct      %2f "# fam members rec inc from any otr so" 
+_column(161 )   byte fincgrp       %2f "Total combined family income (grouped" 
+_column(163 )   byte frat_cat      %2f "Ratio of fam inc to poverty threshold" 
+_column(165 )   byte fhouse        %1f "Family's home tenure status"           
+_column(166 )   byte ffdstyn       %1f "Anyone auth to rec fd stmps last yr?"  
+_column(167 )   byte ffdstct       %2f "# fam members rec fd stmps (last yr)"  
+_column(169 )   byte fm_kids       %2f "# fam members aged 17 and younger"     
+_column(171 )   byte fm_eldr       %2f "# fam members aged 65 and older"       
+_column(173 )   byte fmtype        %1f "Family Type"                           
+_column(174 )   byte fm_educ       %2f "Educ of adult with highest educ in fa" 
+
+}
+/*
+Copyright 2007 shared by the National Bureau of Economic Research and Jean Roth
+
+National Bureau of Economic Research.
+1050 Massachusetts Avenue
+Cambridge, MA 02138
+jroth@nber.org
+
+This program and all programs referenced in it are free software. You
+can redistribute the program or modify it under the terms of the GNU
+General Public License as published by the Free Software Foundation;
+either version 2 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+USA.
+*/

@@ -1,0 +1,164 @@
+infile dictionary { 
+*This program reads the 1997 National Health Interview Survey 1997 samchild  Data File
+*by Jean Roth Mon Jul  2 15:42:28 EDT 2007
+*Please report errors to jroth@nber.org
+*See the .do file for directions and run with do nhis1997_samchild 
+*NOTE:  This program is distributed under the GNU GPL.
+*See end of this file and http://www.gnu.org/licenses/ for details.
+_column(1   )   byte rectype       %2f "Record Type"                           
+_column(3   )    int srvy_yr       %4f "Survey Year"                           
+_column(7   )   str6 hhx           %6s "Household Serial Number"               
+_column(13  )   str2 fmx           %2s "Family Serial Number"                  
+_column(15  )   str2 px            %2s                                         
+_column(17  )   str2 csrespno      %2s "Sample child respondent's person numb" 
+_column(19  )   str2 mother        %2s "Mother's person number"                
+_column(21  )   str2 father        %2s "Father's person number"                
+_column(23  )   byte parents       %1f "Parent(s) present in the family"       
+_column(24  )   byte intv_qrt      %1f "Interview Quarter"                     
+_column(25  )   byte sex           %1f "Sex"                                   
+_column(26  )   byte age_p         %2f "Age"                                   
+_column(28  )   byte r_age1        %1f "Age Recode #1"                         
+_column(29  )   byte r_age2        %1f "Age Recode #2"                         
+_column(30  )   byte origin        %1f "Hispanic Ethnicity"                    
+_column(31  )   byte hispan_p      %2f "Hispanic subgroup detail"              
+_column(33  )   byte mrace_p       %2f "Race coded to a single race group"     
+_column(35  )   byte racerec       %1f "Race Recode"                           
+_column(36  )   byte race          %1f "OMB groups w/multiple race"            
+_column(37  )   byte educ          %2f "Highest level of school completed"     
+_column(39  )   byte edu_momr      %2f "Education of Mother - Recode"          
+_column(41  )   byte edu_dadr      %2f "Education of Father - Recode"          
+_column(43  )   byte ab_bl20k      %2f                                         
+_column(45  )   byte rat_cat       %2f "Ratio of fam inc to poverty threshold" 
+_column(47  )   byte fm_size       %2f "Size of family"                        
+_column(49  )   byte region        %1f "Region"                                
+_column(50  )   byte msasizep      %1f "Geographic Distribution - MSA size"    
+_column(51  )   long wtia_sc       %6f "Weight - Interim Annual"               
+_column(57  )   long wtfa_sc       %6f "Weight - Final Annual"                 
+_column(63  )    int stratum       %3f "Stratum for variance estimation"       
+_column(66  )   byte psu           %1f "PSU for variance estimation"           
+_column(67  )   byte bwgtlb        %2f "Birth weight (lb)"                     
+_column(69  )   byte bwgtoz        %2f "Birth weight (oz)"                     
+_column(71  )   byte amr1          %1f "Told - - had mental retardation"       
+_column(72  )   byte aodd1         %1f "Told - - had otr dev delay"            
+_column(73  )   byte add2          %1f "Ever told - - had ADD"                 
+_column(74  )   byte amr2          %1f "Ever told - - had mental retardation"  
+_column(75  )   byte aodd2         %1f "Ever told - - had otr dev delay"       
+_column(76  )   byte condl1        %1f "Ever told - - had Down's Syndrome"     
+_column(77  )   byte condl2        %1f "Ever told - - had Celebral Palsy"      
+_column(78  )   byte condl3        %1f "Ever told - - had Muscular Dystrophy"  
+_column(79  )   byte condl4        %1f "Ever told - - had Cystic Fibrosis"     
+_column(80  )   byte condl5        %1f "Ever told - - had Sickle Cell anemia"  
+_column(81  )   byte condl6        %1f "Ever told - - had Autism"              
+_column(82  )   byte condl7        %1f "Ever told - - had Diabetes"            
+_column(83  )   byte condl8        %1f "Ever told - - had Arthritis"           
+_column(84  )   byte condl9        %1f "Ever told - - had Congentl heart dise" 
+_column(85  )   byte condl10       %1f "Ever told - - had otr heart cond"      
+_column(86  )   byte cpox          %1f "Has - - EVER had chickenpox?"          
+_column(87  )   byte cashmev       %1f "Ever been told that - - had asthma"    
+_column(88  )   byte cashyr        %1f "Has - - had an asthma episode past 12" 
+_column(89  )   byte casmeryr      %1f "Did - - visit ER due to asthma"        
+_column(90  )   byte hayf1         %1f "Has - - had hay fever; past 12 m"      
+_column(91  )   byte rallg1        %1f "Had respiratory allergy; past 12 m"    
+_column(92  )   byte dallg1        %1f "Had food/digestive allergy; past 12 m" 
+_column(93  )   byte sallg1        %1f "Had eczema/skin allergy; past 12 m"    
+_column(94  )   byte diarh1        %1f "Had freq diarrhea/colitis; past 12 m"  
+_column(95  )   byte anemia1       %1f "Had anemia; past 12 m"                 
+_column(96  )   byte earinf1       %1f "Had 3+ ear infections past 12 m; age " 
+_column(97  )   byte seize1        %1f "Had seizures; past 12 m"               
+_column(98  )   byte hayf2         %1f "Had hay fever; past 12 m"              
+_column(99  )   byte rallg2        %1f "Had respiratory allergy; past 12 m"    
+_column(100 )   byte dallg2        %1f "Had food/digestive allergy; past 12 m" 
+_column(101 )   byte sallg2        %1f "Had eczema/skin allergy; past 12 m"    
+_column(102 )   byte diarh2        %1f "Had freq diarrhea/colitis; past 12 m"  
+_column(103 )   byte anemia2       %1f "Had anemia; past 12 m"                 
+_column(104 )   byte fhead         %1f "Had freq headaches/migraines; past 12" 
+_column(105 )   byte seize2        %1f "Had seizures; past 12 m"               
+_column(106 )   byte stutter       %1f "Stuttered/stammered; past 12 m"        
+_column(107 )   byte chstatyr      %1f "Health better; worse; or about the sa" 
+_column(108 )    int schdayr1      %3f "Days missed due to ill/inj; past 12 m" 
+_column(111 )   byte chearst       %1f "Hearing w/o hearing aid"               
+_column(112 )   byte cvision       %1f "Does - - have trouble seeing"          
+_column(113 )   byte cblind        %1f "Is - - blind/unable to see at all"     
+_column(114 )   byte ihspeq        %1f "Need spec equip due to impair/hlth pr" 
+_column(115 )   byte ihmob         %1f "Impair/hlth prob lmt crawl/walk/run/p" 
+_column(116 )   byte ihmobyr       %1f "Impair/hlth prob lasted/will last 12+" 
+_column(117 )   byte probrx        %1f "Taken RX medication for 3+ m"          
+_column(118 )   byte learnd        %1f "Ever told - - had a learning disabili" 
+_column(119 )   byte cmhagm15      %1f "Has - - been unhappy/depressed past 2" 
+_column(120 )   byte cmhagf15      %1f "Has - - been unhappy/depressed past 2" 
+_column(121 )   byte cmhagm25      %1f "Has - - been unhappy/depressed past 6" 
+_column(122 )   byte cmhagf25      %1f "Has - - been unhappy/depressed past 6" 
+_column(123 )   byte cmhagm35      %1f "Has - - been unhappy/depressed past 6" 
+_column(124 )   byte cmhagf35      %1f "Has - - been unhappy/depressed past 6" 
+_column(125 )   byte mhiboy2       %2f "Mental hlth indicator (MHI) scale sco" 
+_column(127 )   byte mhigrl2       %2f "Mental hlth indicator (MHI) scale sco" 
+_column(129 )   byte mhiboy4       %2f "Mental hlth indicator (MHI) scale sco" 
+_column(131 )   byte mhigrl4       %2f "Mental hlth indicator (MHI) scale sco" 
+_column(133 )   byte mhiboy12      %2f "Mental hlth indicator (MHI) scale sco" 
+_column(135 )   byte mhigrl12      %2f "Mental hlth indicator (MHI) scale sco" 
+_column(137 )   byte cusualpl      %1f "Place - - is usually taken when sick"  
+_column(138 )   byte cplkind       %1f "Place to go when sick (most often)"    
+_column(139 )   byte chcplrou      %1f "USUALLY go there for routine/prev car" 
+_column(140 )   byte chcplknd      %1f "Place - - goes for routine prev care"  
+_column(141 )   byte sourcelc      %2f "Source of medical care recode"         
+_column(143 )   byte chcchgyr      %1f "Change hlth care provider in past 12 " 
+_column(144 )   byte chcchghi      %1f "Change related to hlth insurance"      
+_column(145 )   byte chcdlyr1      %1f "Couldn't get through on phone"         
+_column(146 )   byte chcdlyr2      %1f "Couldn't get appt. soon enough"        
+_column(147 )   byte chcdlyr3      %1f "Wait too long in doctor's office"      
+_column(148 )   byte chcdlyr4      %1f "Not open when you could go"            
+_column(149 )   byte chcdlyr5      %1f "No transportation"                     
+_column(150 )   byte chcafyr       %1f "Can't afford presc medicine"           
+_column(151 )   byte chcafyr1      %1f "Can't afford presc medicine"           
+_column(152 )   byte chcafyr2      %1f "Can't afford mental hlth care/counsel" 
+_column(153 )   byte chcafyr3      %1f "Can't afford dental care"              
+_column(154 )   byte cdenlong      %1f "When did - - last see/talk to dentist" 
+_column(155 )   byte chcsyr11      %1f "Has - - seen/talk to eye doctor"       
+_column(156 )   byte chcsyr12      %1f "Has - - seen/talk to foot doctor"      
+_column(157 )   byte chcsyr13      %1f "Has - - seen/talk to therapist (PT; O" 
+_column(158 )   byte chcsyr14      %1f "Has - - seen/talk to a RN or PA"       
+_column(159 )   byte chcsyr1       %1f "Has - - seen/talk to mental hlth prof" 
+_column(160 )   byte chcsyr2       %1f "Has - - seen/talk to eye doctor"       
+_column(161 )   byte chcsyr3       %1f "Has - - seen/talk to foot doctor"      
+_column(162 )   byte chcsyr4       %1f "Has - - seen/talk to chiropractor"     
+_column(163 )   byte chcsyr5       %1f "Has - - seen/talk to therapist (PT; e" 
+_column(164 )   byte chcsyr6       %1f "Has - - seen/talk to RN or PA"         
+_column(165 )   byte chcsyr7       %1f "Has - - seen/talk OB/GYN past 12 m"    
+_column(166 )   byte chcsyr81      %1f "Has - - seen a med specialist; past 1" 
+_column(167 )   byte chcsyr82      %1f "Has - - seen a general doctor; past 1" 
+_column(168 )   byte chcsyr10      %1f "Does that Dr treat both kids and adul" 
+_column(169 )   byte chpexyr       %1f "Has - - had check-up past 12 m"        
+_column(170 )   byte chernoyr      %1f "# times in ER/ED past 12 m"            
+_column(171 )   byte chchyr        %1f "Got home care from hlth prof; past 12" 
+_column(172 )   byte chchmoyr      %2f "How many months of home care"          
+_column(174 )   byte chchnoyr      %1f "Total number of home vst"              
+_column(175 )   byte chcnoyr       %1f "Total number of office vst"            
+_column(176 )   byte csrgyr        %1f "Has - - had surgery in the past 12 m"  
+_column(177 )   byte csrgnoyr      %2f "Times had outpatient surgery past 12 " 
+_column(179 )   byte cmdlong       %1f "Last time - - saw/spoke to hlth prof"  
+_column(180 )   byte earinf2       %1f "Had 3+ ear infections past 12m; age 3" 
+
+}
+/*
+Copyright 2007 shared by the National Bureau of Economic Research and Jean Roth
+
+National Bureau of Economic Research.
+1050 Massachusetts Avenue
+Cambridge, MA 02138
+jroth@nber.org
+
+This program and all programs referenced in it are free software. You
+can redistribute the program or modify it under the terms of the GNU
+General Public License as published by the Free Software Foundation;
+either version 2 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+USA.
+*/
