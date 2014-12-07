@@ -15,3 +15,22 @@
 #This file is made available under the GNU Public License version 3. For questio-
 #ns and comments:
 #                     mailto:damian.clarke@economics.ox.ac.uk
+
+#-------------------------------------------------------------------------------
+#--- (1) Import required packages
+#-------------------------------------------------------------------------------
+from sys import argv
+import os
+import urllib2
+import zipfile
+
+
+#-------------------------------------------------------------------------------
+#--- (2) URL for NHIS raw data (CDC website)
+#-------------------------------------------------------------------------------
+u1 = 'www.cdc.gov/nchs/nhis/nhis_'
+u2 = '_data_release.htm'
+
+for year in range(1997,2014):
+    print u1 + str(year) + u2
+
