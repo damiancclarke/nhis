@@ -1,7 +1,3 @@
-global DAT "~/database/NHIS/Data/raw/2003"
-global OUT "~/database/NHIS/Data/dta/2003"
-global LOG "~/database/NHIS/Log"
-
 log using "$LOG/samadult.log", replace
 
 version 6.0
@@ -353,7 +349,7 @@ infix
       hbpalc      914 - 914      hbpalcev    915 - 915
       hbpalcnw    916 - 916      hypmedev    917 - 917
       hypmed      918 - 918      hymdmed     919 - 919
-using $DAT/samadult.dat;
+using "$DAT/2003/samadult.dat";
 replace wtia_sa = wtia_sa / 10;
 replace bmi     = bmi     / 100;
 
@@ -2578,7 +2574,7 @@ describe;
 * DISPLAY A TEST TABLE FROM THE FILE;
 
 tabulate educ [fweight=wtfa_sa];
-save $OUT/samadult, replace;
+save "$OUT/2003/samadult", replace;
 
 #delimit cr
 
