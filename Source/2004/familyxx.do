@@ -1,7 +1,3 @@
-global DAT "~/database/NHIS/Data/raw/2004"
-global OUT "~/database/NHIS/Data/dta/2004"
-global LOG "~/database/NHIS/Log"
-
 log using "$LOG/familyxx.log", replace
 
 version 6.0
@@ -100,7 +96,7 @@ infix
       ffdstyn     163 - 163      ffdstct     164 - 165
       fwicyn      166 - 166      fwicct      167 - 168
 
-using $DAT/familyxx.dat;
+using "$DAT/2004/familyxx.dat";
 
 * DEFINE VARIABLE LABELS;
 
@@ -501,7 +497,7 @@ describe;
 * DISPLAY A TEST TABLE FROM THE FILE;
 
 tabulate rectype [fweight= wtfa_fam];
-save $OUT/familyxx, replace;
+save "$OUT/2004/familyxx", replace;
 
 #delimit cr
 
