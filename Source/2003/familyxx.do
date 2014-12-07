@@ -92,7 +92,7 @@ infix
       fm_eldr     189 - 190      fmtype      191 - 191
       fmstrct2    192 - 193      fmstr2      194 - 195
       fm_educ     196 - 197      fm_resp     198 - 199
-using "$DAT/2002/familyxx.dat";
+using "$DAT/2003/familyxx.dat";
 
 * DEFINE VARIABLE LABELS;
 
@@ -431,7 +431,7 @@ describe;
 * DISPLAY A TEST TABLE FROM THE FILE;
 
 tabulate rectype [fweight=wtfa_fam];
-save "$OUT/2002/familyxx.dta", replace;
+save "$OUT/2003/familyxx.dta", replace;
 
 #delimit cr
 
