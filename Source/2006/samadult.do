@@ -1,7 +1,3 @@
-global DAT "~/database/NHIS/Data/raw/2006"
-global OUT "~/database/NHIS/Data/dta/2006"
-global LOG "~/database/NHIS/Log"
-
 log using "$LOG/samadult.log", replace
 
 version 6.0
@@ -325,7 +321,7 @@ infix
       tbcured     756 - 756      tbchanc     757 - 757
       tbshame     758 - 758      homeless    759 - 759
 
-using $DAT/samadult.dat;
+using "$DAT/2006/samadult.dat";
 replace wtia_sa = wtia_sa/10;
 replace bmi = bmi/100;
 
@@ -2250,7 +2246,7 @@ describe;
 * DISPLAY A TEST TABLE FROM THE FILE;
 
 tabulate rectype [fweight= wtfa_sa];
-save $OUT/samadult, replace;
+save "$OUT/2006/samadult", replace;
 
 #delimit cr
 

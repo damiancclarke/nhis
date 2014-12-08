@@ -1,7 +1,3 @@
-global DAT "~/database/NHIS/Data/raw/2005"
-global OUT "~/database/NHIS/Data/dta/2005"
-global LOG "~/database/NHIS/Log"
-
 log using "$LOG/samchild.log", replace
 
 version 6.0
@@ -121,7 +117,7 @@ infix
       tretwhr2    197 - 197      tretwhr3    198 - 198
       tretwhr4    199 - 199      tretwhr5    200 - 200
 
-using $DAT/samchild.dat;
+using "$DAT/2005/samchild.dat";
 replace wtia_sc = wtia_sc/10;
 
 * DEFINE VARIABLE LABELS;
@@ -740,7 +736,7 @@ describe;
 * DISPLAY A TEST TABLE FROM THE FILE;
 
 tabulate rectype [fweight= wtfa_sc];
-save $OUT/samchild, replace;
+save "$OUT/2005/samchild", replace;
 
 #delimit cr
 

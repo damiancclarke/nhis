@@ -1,7 +1,3 @@
-global DAT "~/database/NHIS/Data/raw/2007"
-global OUT "~/database/NHIS/Data/dta/2007"
-global LOG "~/database/NHIS/Log"
-
 log using "$LOG/personsx.log", replace
 
 version 6.0
@@ -324,7 +320,7 @@ infix
       fstpmyr     718 - 719      eligpwic    720 - 720
       pwic        721 - 721      wic_flag    722 - 722
 
-using $DAT/personsx.dat;
+using "$DAT/2007/personsx.dat";
 replace wtia = wtia/10;
 
 * DEFINE VARIABLE LABELS;
@@ -2092,7 +2088,7 @@ describe;
 * DISPLAY A TEST TABLE FROM THE FILE;
 
 tabulate rectype [fweight= wtfa];
-save $OUT/personsx, replace;
+save "$OUT/2007/personsx", replace;
 
 #delimit cr
 

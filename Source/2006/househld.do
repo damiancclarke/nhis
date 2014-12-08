@@ -1,7 +1,3 @@
-global DAT "~/database/NHIS/Data/raw/2006"
-global OUT "~/database/NHIS/Data/dta/2006"
-global LOG "~/database/NHIS/Log"
-
 log using "$LOG/househld.log", replace
 
 version 6.0
@@ -52,7 +48,7 @@ infix
       region       41 -  41      strat_p      42 -  44
       psu_p        45 -  46
 
-using $DAT/househld.dat;
+using "$DAT/2006/househld.dat";
 replace wtia_hh = wtia_hh/10;
 
 * DEFINE VARIABLE LABELS;
@@ -163,7 +159,7 @@ describe;
 * DISPLAY A TEST TABLE FROM THE FILE;
 
 tabulate rectype [fweight= wtfa_hh];
-save $OUT/househld, replace;
+save "$OUT/2006/househld", replace;
 
 #delimit cr
 

@@ -1,7 +1,3 @@
-global DAT "~/database/NHIS/Data/raw/2012"
-global OUT "~/database/NHIS/Data/dta/2012"
-global LOG "~/database/NHIS/Log"
-
 log using "$LOG/samadult.log", replace
 
 version 6.0
@@ -464,7 +460,7 @@ infix
       aweboftp   1081 -1081      awebeml    1082 -1082
       awebmno    1083 -1085      awebmtp    1086 -1086
 
-using "$DAT/samadult.dat";
+using "$DAT/2012/samadult.dat";
 replace wtia_sa = wtia_sa/10;
 replace bmi = bmi/100;
 
@@ -3262,7 +3258,7 @@ describe;
 * DISPLAY A TEST TABLE FROM THE FILE;
 
 tabulate rectype [fweight= wtfa_sa];
-save "$OUT/samadult", replace;
+save "$OUT/2012/samadult", replace;
 
 #delimit cr
 
