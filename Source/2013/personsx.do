@@ -1,37 +1,28 @@
-global LOG "~/database/NHIS/Log"
-global DAT "~/database/NHIS/Data/raw/2013"
-global OUT "~/database/NHIS/Data/dta/2013"
-
 log using "$LOG/personsx.log", text replace
 
-version 6.0
+/*******************************************************************************
+These processing files were provided in their original format by the CDC/NCHS or
+by Jean Roth of NBER. Updates have been written by Damian Clarke and Yu-Kuan Ch-
+en to:
+    (1) Provide a full series of Stata input files for 1997-2013
+    (2) Fix a number of processing errors in scripts
+    (3) Completely automate the process through one do file
 
-* THE FOLLOWING COMMAND TEMPORARILY CHANGES THE COMMAND-
-* ENDING DELIMITER FROM A CARRIAGE RETURN TO A SEMICOLON
+This entire process can be automated with the Python script provided at:
+    https://github.com/damiancclarke/nhis, or
+    https://sites.google.com/site/damiancclarke/computation
 
+Links to original data which is downloaded by the Python script are here:
+    http://www.cdc.gov/nchs/nhis.htm
+
+The original processing scripts which were altered to provide these routines are
+available at the above address, or in the case of Jean Roth's NBER files, at:
+    http://www.nber.org/data/national-health-interview-survey-programs.html
+
+Any further questions can be directed to damian.clarke@economics.ox.ac.uk
+*******************************************************************************/
+    
 #delimit ;
-
-*********************************************************************
-  JUNE 5, 2014  3:09 PM
-
-  THIS IS AN EXAMPLE OF A STATA DO PROGRAM THAT CREATES A STATA
-  FILE FROM THE 2013 NHIS Public Use Person ASCII FILE
-
-  NOTES:
-
-  EXECUTING THIS PROGRAM WILL REPLACE personsx.dta AND personsx.log
-  IF THOSE FILES ALREADY EXIST IN THE DEFAULT DIRECTORY
-
-  THIS PROGRAM ASSUMES THAT THE ASCII DATA FILE IS IN THE STATA WORKING
-  DIRECTORY.  AN EXAMPLE OF HOW TO CHANGE THE WORKING DIRECTORY
-  WITHIN STATA IS THE FOLLOWING COMMAND: cd c:\nhis2013\
-
-  THIS PROGRAM OPENS A LOG FILE.  IF THE PROGRAM ENDS PREMATURELY, THE
-  LOG FILE WILL REMAIN OPEN.  BEFORE RUNNING THIS PROGRAM AGAIN, THE
-  USER SHOULD ENTER THE FOLLOWING STATA COMMAND: log close
-
-  THIS IS STORED IN personsx.do
-  *********************************************************************;
 clear;
 set mem 200m;
 
@@ -357,7 +348,7 @@ infix
 
   englang     802 - 802
 
-  using "$DAT/PERSONSX.dat";
+  using "$DAT/2013/PERSONSX.dat";
 replace wtia = wtia/10;
 
 * DEFINE VARIABLE LABELS;
@@ -2184,18 +2175,6 @@ label values pwic      pep037x;   label values wic_flag  pep609x;
 
 label values englang   pep610x;
 
-* DISPLAY OVERALL DESCRIPTION OF FILE;
-
-describe;
-
-* DISPLAY A TEST TABLE FROM THE FILE;
-
-tabulate rectype [fweight= wtfa];
-save "$DAT/personsx", replace;
-
+save "$OUT/2013/personsx", replace;
 #delimit cr
-
-* data file is stored in personsx.dta
-* log  file is stored in personsx.log
-
 log close
