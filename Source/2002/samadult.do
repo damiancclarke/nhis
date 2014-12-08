@@ -1,33 +1,27 @@
 log using "$LOG/samadult.log", replace
+/*******************************************************************************
+These processing files were provided in their original format by the CDC/NCHS or
+by Jean Roth of NBER. Updates have been written by Damian Clarke and Yu-Kuan Ch-
+en to:
+    (1) Provide a full series of Stata input files for 1997-2013
+    (2) Fix a number of processing errors in scripts
+    (3) Completely automate the process through one do file
 
-version 6.0
+This entire process can be automated with the Python script provided at:
+    https://github.com/damiancclarke/nhis, or
+    https://sites.google.com/site/damiancclarke/computation
 
-* THE FOLLOWING COMMAND TEMPORARILY CHANGES THE COMMAND-
-* ENDING DELIMITER FROM A CARRIAGE RETURN TO A SEMICOLON
+Links to original data which is downloaded by the Python script are here:
+    http://www.cdc.gov/nchs/nhis.htm
 
+The original processing scripts which were altered to provide these routines are
+available at the above address, or in the case of Jean Roth's NBER files, at:
+    http://www.nber.org/data/national-health-interview-survey-programs.html
+
+Any further questions can be directed to damian.clarke@economics.ox.ac.uk
+*******************************************************************************/
+    
 #delimit ;
-
-*********************************************************************
- DECEMBER 17, 2003
- 
- THIS IS AN EXAMPLE OF A STATA DO PROGRAM THAT CREATES A STATA
- FILE FROM THE 2002 NHIS PUBLIC USE SAMADULT.DAT ASCII FILE
-
- NOTES:
-
- EXECUTING THIS PROGRAM WILL REPLACE SAMADULT.DTA AND SAMADULT.LOG
- IF THOSE FILES ALREADY EXIST IN THE DEFAULT DIRECTORY
-
- THIS PROGRAM ASSUMES THAT THE ASCII DATA FILE IS IN THE STATA WORKING
- DIRECTORY.  AN EXAMPLE OF HOW TO CHANGE THE WORKING DIRECTORY
- WITHIN STATA IS THE FOLLOWING COMMAND: cd \nhis2002\
-
- THIS PROGRAM OPENS A LOG FILE.  IF THE PROGRAM ENDS PREMATURELY, THE
- LOG FILE WILL REMAIN OPEN.  BEFORE RUNNING THIS PROGRAM AGAIN, THE
- USER SHOULD ENTER THE FOLLOWING STATA COMMAND: log close
- 
- THIS IS STORED IN SAMADULT.DO
-*********************************************************************;
 clear;
 set mem 200m;
 
@@ -2417,18 +2411,7 @@ label values dishfl03  sap088x;   label values dishfl04  sap088x;
 label values dishfl05  sap088x;   label values dishfl06  sap088x;
 label values dishfl07  sap088x;   label values dishfuse  sap034x;
 
-* DISPLAY OVERALL DESCRIPTION OF FILE;
-
-describe;
-
-* DISPLAY A TEST TABLE FROM THE FILE;
-
-tabulate educ [fweight=wtfa_sa];
 save "$OUT/2002/samadult.dta", replace;
 
 #delimit cr
-
-* data file is stored in samadult.dta
-* log  file is stored in samadult.log
-
 log close
