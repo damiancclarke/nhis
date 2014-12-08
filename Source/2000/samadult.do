@@ -1,35 +1,34 @@
 clear all
-
 log using "$LOG/samadult.log", replace
 set mem 1000m
 
-/*------------------------------------------------
-  This program reads the 2000 National Health Interview Survey 2000 samadult  Data File
-  by Jean Roth Mon Jul  2 15:44:01 EDT 2007
-  Please report errors to jroth@nber.org 
-  NOTE:  This program is distributed under the GNU GPL.
-  See end of this file and http://www.gnu.org/licenses/ for details.
-  Run with do nhis2000_samadult
------------------------------------------------ */
+/*******************************************************************************
+These processing files were provided in their original format by the CDC/NCHS or
+by Jean Roth of NBER. Updates have been written by Damian Clarke and Yu-Kuan Ch-
+en to:
+    (1) Provide a full series of Stata input files for 1997-2013
+    (2) Fix a number of processing errors in scripts
+    (3) Completely automate the process through one do file
 
-/* The following line should contain
-   the complete path and name of the raw data file.
-   On a PC, use backslashes in paths as in C:\  */
+This entire process can be automated with the Python script provided at:
+    https://github.com/damiancclarke/nhis, or
+    https://sites.google.com/site/damiancclarke/computation
 
+Links to original data which is downloaded by the Python script are here:
+    http://www.cdc.gov/nchs/nhis.htm
+
+The original processing scripts which were altered to provide these routines are
+available at the above address, or in the case of Jean Roth's NBER files, at:
+    http://www.nber.org/data/national-health-interview-survey-programs.html
+
+Any further questions can be directed to damian.clarke@economics.ox.ac.uk
+*******************************************************************************/
+    
 local dat_name "$DAT/2000/samadult.dat"
-
-/* The following line should contain the path to your output '.dta' file */
-
 local dta_name "$OUT/2000/samadult"
-
-/* The following line should contain the path to the data dictionary file */
-
 local dct_name "$COD/2000/nhis2000_samadult.dct"
-
 infile using "`dct_name'", using("`dat_name'") clear
 
-
-*Everything below this point are value labels
 
 #delimit ;
 
@@ -11377,30 +11376,5 @@ label define fhdtyp3b
 	2           "Not mentioned"                 
 ;
 #delimit cr
-save `dta_name', replace
-
-/*
-Copyright 2007 shared by the National Bureau of Economic Research and Jean Roth
-
-National Bureau of Economic Research.
-1050 Massachusetts Avenue
-Cambridge, MA 02138
-jroth@nber.org
-
-This program and all programs referenced in it are free software. You
-can redistribute the program or modify it under the terms of the GNU
-General Public License as published by the Free Software Foundation;
-either version 2 of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
-USA.
-*/
-
+save "`dta_name'", replace
 log close
