@@ -4,9 +4,15 @@
 Script to run importing scripts of raw NHIS files to convert .dat to .dta.  This
 requires downloading raw .dat files from the web:
    http://www.cdc.gov/nchs/nhis/nhis_2012_data_release.htm
-along with import scripts found on the same page.
 
-contact:mailto:damian.clarke@economics.ox.ac.uk
+This can be automated by using Python and the script NHISprocess.py available at
+   https://sites.google.com/site/damiancclarke/computation/
+
+If using the Python script, first run the script using Python to download all s-
+urvey data, and second run this Stata do file to import all raw data and convert
+to Stata's dta format.  For questions and comments:
+
+        contact:mailto:damian.clarke@economics.ox.ac.uk
 
 */
 vers 11

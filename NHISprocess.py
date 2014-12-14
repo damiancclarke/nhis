@@ -34,7 +34,7 @@ import zipfile
 script, OUTDIR = argv
 
 #-------------------------------------------------------------------------------
-#--- (2) URL for NHIS raw data (CDC website)
+#--- (2) URL for NHIS raw data (CDC website) and Stata source (do) files
 #-------------------------------------------------------------------------------
 u1      = 'ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/NHIS/'
 surveys = ['familyxx', 'househld', 'personsx', 'samchild', 'samadult']
@@ -113,7 +113,6 @@ z = zipfile.ZipFile(fz)
 for name in z.namelist():
     z.extract(name, outpath)
 fz.close()
-
 
 #-------------------------------------------------------------------------------
 #--- (5) Terminating
