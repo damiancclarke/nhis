@@ -108,7 +108,7 @@ if not os.path.exists(outpath):
 
 
 urllib.urlretrieve(source, local)
-fz = open(response, 'rb')
+fz = open(local, 'rb')
 z = zipfile.ZipFile(fz)
 for name in z.namelist():
     z.extract(name, outpath)
