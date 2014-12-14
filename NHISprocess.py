@@ -99,4 +99,4 @@ for year in range(1997,2014):
 #-------------------------------------------------------------------------------
 #--- (4) Terminating
 #-------------------------------------------------------------------------------
-print 'Terminating.  Now simply run NHISPrep.do to convert all to dta format.'
+print 'Terminating. Now simply run NHISPrep.do to convert all dat to dta format.'

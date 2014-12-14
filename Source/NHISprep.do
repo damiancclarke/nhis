@@ -21,16 +21,19 @@ cap log close
 global DAT "~/database/NHIS/Data/raw"
 global OUT "~/database/NHIS/Data/dta"
 global LOG "~/database/NHIS/Log"
-global SOURCE "~/database/NHIS/Source"
-global COD1 "~/database/NHIS/Source"
+global COD "~/database/NHIS/Source"
+
+cap mkdir "$OUT"
+cap mkdir "$LOG"
 
 ********************************************************************************
 *** (2) Process all files
 ********************************************************************************
 foreach year of numlist 1997(1)2013 {
-	foreach script in familyxx househld personsx samadult samchild {
+  cap mkdir "$OUT/`year'"
+  foreach script in familyxx househld personsx samadult samchild {
 		dis "Year `year', script `script'"
-		do "$SOURCE/`year'/`script'.do"
+		do "$COD/`year'/`script'.do"
 	}
 }
 
