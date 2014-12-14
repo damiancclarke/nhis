@@ -39,7 +39,7 @@ script, OUTDIR = argv
 u1      = 'ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/NHIS/'
 surveys = ['familyxx', 'househld', 'personsx', 'samchild', 'samadult']
 dirs    = ['familyfile', 'household', 'person', 'samplechild', 'sampleadult']
-
+dcc     = 'https://sites.google.com/site/damiancclarke/computation/'
 
 print 'The script ' + script + ' is taking files from:'
 
@@ -97,6 +97,14 @@ for year in range(1997,2014):
             os.rename(midname, lowname)
 
 #-------------------------------------------------------------------------------
-#--- (4) Terminating
+#--- (4) Downloading Source
+#-------------------------------------------------------------------------------
+source = dcc + 'erate.zip?attredirects=0&d=1'
+
+
+#-------------------------------------------------------------------------------
+#--- (5) Terminating
 #-------------------------------------------------------------------------------
 print 'Terminating. Now simply run NHISPrep.do to convert all dat to dta format.'
+
+
