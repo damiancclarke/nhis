@@ -99,7 +99,7 @@ for year in range(1997,2014):
 #-------------------------------------------------------------------------------
 #--- (4) Downloading Source
 #-------------------------------------------------------------------------------
-source  = dcc + 'erate.zip?attredirects=0&d=1'
+source  = dcc + 'Source.zip?attredirects=0&d=1'
 outpath = OUTDIR + 'Source/'
 local   = OUTDIR + 'Source/' + 'Source.zip'
 
@@ -118,5 +118,3 @@ fz.close()
 #--- (5) Terminating
 #-------------------------------------------------------------------------------
 print 'Terminating. Now simply run NHISPrep.do to convert all dat to dta format.'
-
-
