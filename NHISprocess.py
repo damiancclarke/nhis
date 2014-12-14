@@ -99,7 +99,20 @@ for year in range(1997,2014):
 #-------------------------------------------------------------------------------
 #--- (4) Downloading Source
 #-------------------------------------------------------------------------------
-source = dcc + 'erate.zip?attredirects=0&d=1'
+source  = dcc + 'erate.zip?attredirects=0&d=1'
+outpath = OUTDIR + 'Source/'
+local   = OUTDIR + 'Source/' + 'Source.zip'
+
+if not os.path.exists(outpath):
+    os.mkdir(outpath)
+
+
+urllib.urlretrieve(source, local)
+fz = open(response, 'rb')
+z = zipfile.ZipFile(fz)
+for name in z.namelist():
+    z.extract(name, outpath)
+fz.close()
 
 
 #-------------------------------------------------------------------------------
