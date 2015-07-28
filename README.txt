@@ -5,7 +5,7 @@
 #-------------------------------------------------------------------------------
 
 These scripts import and process data from the NHIS (National Health Information
-Survey), creating Stata files for each year from 1997-2013.  Initially, only the
+Survey), creating Stata files for each year from 1997-2014.  Initially, only the
 script NHISprocess.py is required.  This Python script downloads full NHIS data
 from the CDC website, and also downloads Stata do files and dictionary files to
 read in to Stata format the fixed width data made available from the CDC.
